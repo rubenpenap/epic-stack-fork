@@ -1,6 +1,6 @@
 import { getFormProps, getInputProps, useForm } from '@conform-to/react'
-import { getZodConstraint, parseWithZod } from '@conform-to/zod'
-import { type SEOHandle } from '@nasa-gcn/remix-seo'
+import { getZodConstraint, parseWithZod } from '@conform-to/zod/v4'
+import { type SEOHandle } from '#app/utils/seo.ts'
 import * as QRCode from 'qrcode'
 import { data, redirect, Form, useNavigation } from 'react-router'
 import { z } from 'zod'
@@ -73,7 +73,7 @@ export async function action({ request }: Route.ActionArgs) {
 	const submission = await parseWithZod(formData, {
 		schema: () =>
 			ActionSchema.superRefine(async (data, ctx) => {
-				if (data.intent === 'cancel') return null
+				if (data.intent === 'cancel') return
 				const codeIsValid = await isCodeValid({
 					code: data.code,
 					type: twoFAVerifyVerificationType,

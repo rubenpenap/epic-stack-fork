@@ -78,9 +78,10 @@ expect.extend({
 	},
 	async toHaveSessionForUser(response: Response, userId: string) {
 		const setCookies = response.headers.getSetCookie()
-		const sessionSetCookie = setCookies.find(
-			(c) => setCookieParser.parseString(c).name === 'en_session',
-		)
+		const sessionSetCookie = setCookies.find((cookie) => {
+			const parsedCookie = setCookieParser.parseString(cookie)
+			return parsedCookie?.name === 'en_session'
+		})
 
 		if (!sessionSetCookie) {
 			return {
@@ -119,9 +120,10 @@ expect.extend({
 	},
 	async toSendToast(response: Response, toast: ToastInput) {
 		const setCookies = response.headers.getSetCookie()
-		const toastSetCookie = setCookies.find(
-			(c) => setCookieParser.parseString(c).name === 'en_toast',
-		)
+		const toastSetCookie = setCookies.find((cookie) => {
+			const parsedCookie = setCookieParser.parseString(cookie)
+			return parsedCookie?.name === 'en_toast'
+		})
 
 		if (!toastSetCookie) {
 			return {
