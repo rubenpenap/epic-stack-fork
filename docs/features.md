@@ -52,5 +52,5 @@ docs examples) in the future:
 - Feature flags
 - Documentation on production data seeding process
 
-Not a fan of bits of the stack? Fork it, change it, and use
-`npx create-remix --template your/repo`! Make it your own.
+Not a fan of bits of the stack? Fork it, change it, and use this repo as
+your template. Make it your own.

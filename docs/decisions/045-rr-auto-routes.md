@@ -33,5 +33,5 @@ the build and dev pipelines, and any previous configuration specific to
 - Contributors adopt the naming and organization rules defined by
   `react-router-auto-routes`, so we also updated documentation and examples to
   reflect the new folder semantics.
-- All existing functionality has been validated with `npm run validate` and
+- All existing functionality has been validated with `pnpm run validate` and
   works correctly with the new routing system.

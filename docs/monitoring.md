@@ -50,7 +50,7 @@ for your project under `Organization > Projects > Project > Name`
 
 In the 'build' section of the [Dockerfile](../other/Dockerfile), there is an
 example of how to pass `SENTRY_AUTH_TOKEN` secret, so it is available to Vite
-when `npm run build` is run. You may also uncomment and hard code your
+when `pnpm run build` is run. You may also uncomment and hard code your
 `SENTRY_ORG` and `SENTRY_PROJECT` values. Setup up your secrets in
 [GitHub Actions secrets](https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions).
 You can do the same for any other secret (environment variable) you need at

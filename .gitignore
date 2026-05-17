@@ -24,4 +24,16 @@ node_modules
 
 # generated files
 /app/components/ui/icons
+/app/generated/prisma
 .react-router/
+# Local Pi runtime state
+.atl/
+.pi/
+.pi-lens/
+
+# Local agent/workflow scratch artifacts
+/tmp/
+/false
+
+# Local generated declarations from JS tooling
+/scripts/*.d.ts
