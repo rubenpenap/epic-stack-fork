@@ -1,9 +1,9 @@
 import crypto from 'node:crypto'
-import { type Connection, type Password, type User } from '@prisma/client'
 import bcrypt from 'bcryptjs'
 import { redirect } from 'react-router'
 import { Authenticator } from 'remix-auth'
 import { safeRedirect } from 'remix-utils/safe-redirect'
+import { type Connection, type Password, type User } from '#app/generated/prisma/index.js'
 import { providers } from './connections.server.ts'
 import { prisma } from './db.server.ts'
 import { combineHeaders, downloadFile } from './misc.tsx'
@@ -278,6 +278,9 @@ export async function checkIsCommonPassword(password: string) {
 		if (!response.ok) return false
 
 		const data = await response.text()
+		if (typeof data !== 'string') {
+			throw new TypeError('Password check response was not text')
+		}
 		return data.split(/\r?\n/).some((line) => {
 			const [hashSuffix, ignoredPrevalenceCount] = line.split(':')
 			return hashSuffix === suffix

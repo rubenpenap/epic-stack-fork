@@ -3,7 +3,9 @@ import { z } from 'zod'
 const schema = z.object({
 	NODE_ENV: z.enum(['production', 'development', 'test'] as const),
 	DATABASE_PATH: z.string(),
-	DATABASE_URL: z.string(),
+	DATABASE_URL: z
+		.string()
+		.startsWith('file:', 'DATABASE_URL must start with "file:" for Prisma SQLite'),
 	SESSION_SECRET: z.string(),
 	INTERNAL_COMMAND_TOKEN: z.string(),
 	HONEYPOT_SECRET: z.string(),

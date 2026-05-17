@@ -15,17 +15,24 @@ export async function setup() {
 	if (databaseExists) {
 		const databaseLastModifiedAt = (await fsExtra.stat(BASE_DATABASE_PATH))
 			.mtime
-		const prismaSchemaLastModifiedAt = (
-			await fsExtra.stat('./prisma/schema.prisma')
-		).mtime
+		const watchedPrismaInputs = await Promise.all([
+			fsExtra.stat('./prisma/schema.prisma'),
+			fsExtra.stat('./prisma/seed.ts'),
+			fsExtra.stat('./prisma.config.ts'),
+		])
+		const latestPrismaInputAt = watchedPrismaInputs.reduce(
+			(latest, file) =>
+				file.mtime > latest ? file.mtime : latest,
+			watchedPrismaInputs[0].mtime,
+		)
 
-		if (prismaSchemaLastModifiedAt < databaseLastModifiedAt) {
+		if (latestPrismaInputAt < databaseLastModifiedAt) {
 			return
 		}
 	}
 
 	await execaCommand(
-		'npx prisma migrate reset --force --skip-seed --skip-generate',
+		'pnpm exec prisma migrate reset --force',
 		{
 			stdio: 'inherit',
 			env: {
