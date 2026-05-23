@@ -1,7 +1,23 @@
+import { createRequire } from 'node:module'
+import path from 'node:path'
 import { styleText } from 'node:util'
 import { remember } from '@epic-web/remember'
-// Changed import due to issue: https://github.com/remix-run/react-router/pull/12644
-import { PrismaClient } from '@prisma/client/index.js'
+import { PrismaBetterSqlite3 } from '@prisma/adapter-better-sqlite3'
+
+const require = createRequire(import.meta.url)
+const generatedPrismaClientPath = path.resolve(
+	process.cwd(),
+	'app/generated/prisma/client.js',
+)
+const { PrismaClient } = require(generatedPrismaClientPath) as typeof import('../generated/prisma/client')
+
+function getRuntimeDatabaseUrl() {
+	if (process.env.DATABASE_PATH) {
+		return `file:${process.env.DATABASE_PATH}`
+	}
+
+	return process.env.DATABASE_URL
+}
 
 export const prisma = remember('prisma', () => {
 	// NOTE: if you change anything in this function you'll need to restart
@@ -10,14 +26,16 @@ export const prisma = remember('prisma', () => {
 	// Feel free to change this log threshold to something that makes sense for you
 	const logThreshold = 20
 
+	const adapter = new PrismaBetterSqlite3({ url: getRuntimeDatabaseUrl() })
 	const client = new PrismaClient({
+		adapter,
 		log: [
 			{ level: 'query', emit: 'event' },
 			{ level: 'error', emit: 'stdout' },
 			{ level: 'warn', emit: 'stdout' },
 		],
 	})
-	client.$on('query', async (e) => {
+	client.$on('query', async (e: { duration: number; query: string }) => {
 		if (e.duration < logThreshold) return
 		const color =
 			e.duration < logThreshold * 1.1

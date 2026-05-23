@@ -1,7 +1,7 @@
 import { test as base, type Response } from '@playwright/test'
-import { type User as UserModel } from '@prisma/client'
 import { href, type Register } from 'react-router'
 import * as setCookieParser from 'set-cookie-parser'
+import { type User as UserModel } from '#app/generated/prisma/index.js'
 import {
 	getPasswordHash,
 	getSessionExpirationDate,
@@ -106,6 +106,9 @@ export const test = base.extend<{
 			const cookieConfig = setCookieParser.parseString(
 				await authSessionStorage.commitSession(authSession),
 			)
+			if (!cookieConfig) {
+				throw new Error('Failed to parse auth session cookie')
+			}
 			const newConfig = {
 				...cookieConfig,
 				domain: 'localhost',

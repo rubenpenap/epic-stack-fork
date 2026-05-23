@@ -1,0 +1,10 @@
+node_modules
+build
+.git
+.github
+.pi
+.pi-lens
+tmp
+.env
+app/generated/prisma
+remix.init/node_modules

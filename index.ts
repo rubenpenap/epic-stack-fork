@@ -1,6 +1,8 @@
-import 'dotenv/config'
+import dotenv from 'dotenv'
 import * as fs from 'node:fs'
 import sourceMapSupport from 'source-map-support'
+
+dotenv.config({ override: true })
 
 sourceMapSupport.install({
 	retrieveSourceMap: function (source) {

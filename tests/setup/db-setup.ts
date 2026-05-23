@@ -6,6 +6,7 @@ import { BASE_DATABASE_PATH } from './global-setup.ts'
 const poolId = process.env.VITEST_POOL_ID || '0'
 const databaseFile = `./tests/prisma/data.${poolId}.db`
 const databasePath = path.join(process.cwd(), databaseFile)
+process.env.DATABASE_PATH = databasePath
 process.env.DATABASE_URL = `file:${databasePath}`
 
 const cacheDatabasePath = process.env.CACHE_DATABASE_PATH
