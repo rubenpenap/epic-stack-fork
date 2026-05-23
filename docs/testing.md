@@ -15,7 +15,7 @@ We use Playwright for our End-to-End tests in this project. You'll find those in
 the `tests` directory. As you make changes, add to an existing file or create a
 new file in the `tests` directory to test your changes.
 
-To run these tests in development, run `npm run test:e2e:dev` which will start
+To run these tests in development, run `pnpm run test:e2e:dev` which will start
 the dev server for the app and run Playwright on it.
 
 We have a fixture for testing authenticated features without having to go
@@ -42,7 +42,7 @@ We have DOM-specific assertion helpers via
 This project uses TypeScript. It's recommended to get TypeScript set up for your
 editor to get a really great in-editor experience with type checking and
 auto-complete. To run type checking across the whole project, run
-`npm run typecheck`.
+`pnpm run typecheck`.
 
 ## Linting
 
@@ -53,5 +53,5 @@ This project uses ESLint for linting. That is configured in `.eslintrc.js`.
 We use [Prettier](https://prettier.io/) for auto-formatting in this project.
 It's recommended to install an editor plugin (like the
 [VSCode Prettier plugin](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode))
-to get auto-formatting on save. There's also a `npm run format` script you can
+to get auto-formatting on save. There's also a `pnpm run format` script you can
 run to format all files in the project.

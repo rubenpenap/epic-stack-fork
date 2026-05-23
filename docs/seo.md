@@ -5,18 +5,18 @@ you can read about
 [in the Remix Metadata docs](https://remix.run/docs/en/main/route/meta).
 
 The Epic Stack also has built-in support for `/robots.txt` and `/sitemap.xml`
-via [resource routes](https://remix.run/docs/en/main/guides/resource-routes)
-using [`@nasa-gcn/remix-seo`](https://github.com/nasa-gcn/remix-seo). By
-default, all routes are included in the `sitemap.xml` file, but you can
-configure which routes are included using the `handle` export in the route. Only
-public-facing pages should be included in the `sitemap.xml` file.
+via [resource routes](https://remix.run/docs/en/main/guides/resource-routes).
+The sitemap loader walks the React Router server route manifest, skips known
+private/resource sections by default, and lets routes opt out or add custom
+entries via a `handle.getSitemapEntries` export. Only public-facing pages
+should be included in the `sitemap.xml` file.
 
-Here are two quick examples of how to customize the sitemap on a per-route basis
-from the `@nasa-gcn/remix-seo` docs:
+Here are two quick examples of how to customize the sitemap on a per-route
+basis:
 
 ```tsx
 // routes/blog/_layout.tsx
-import { type SEOHandle } from '@nasa-gcn/remix-seo'
+import { type SEOHandle } from '#app/utils/seo.ts'
 import { serverOnly$ } from 'vite-env-only/macros'
 
 export const handle: SEOHandle = {
@@ -38,12 +38,7 @@ build. Support for this is pre-configured in the `vite.config.ts` file.
 
 ```tsx
 // in your routes/url-that-doesnt-need-sitemap
-import { type SEOHandle } from '@nasa-gcn/remix-seo'
-import { type Route } from './+types/sitemap[.]xml.ts'
-
-export async function loader({ request }: Route.LoaderArgs) {
-	/**/
-}
+import { type SEOHandle } from '#app/utils/seo.ts'
 
 export const handle: SEOHandle = {
 	getSitemapEntries: () => null,

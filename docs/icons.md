@@ -15,7 +15,7 @@ add new icons from the command line.
 To add the `trash`, `pencil-1`, and `avatar` icons, run:
 
 ```sh
-npx sly add @radix-ui/icons trash pencil-1 avatar
+pnpm dlx sly add @radix-ui/icons trash pencil-1 avatar
 ```
 
 If you don't specify the icons, Sly will show an interactive list of all the
@@ -29,7 +29,7 @@ the configuration in the `./other/sly/sly.json` file.
 The SVGs used by default in the Epic Stack come from
 [icons.radix-ui.com](https://icons.radix-ui.com/). You can download additional
 SVG icons from there, or provide your own. Once you've added new files in the
-directory, run `npm run build` and you can then use the `Icon` component to
+directory, run `pnpm run build` and you can then use the `Icon` component to
 render it. The `icon` prop is the name of the file without the `.svg` extension.
 We recommend using `kebab-case` filenames rather than `PascalCase` to avoid
 casing issues with different operating systems.

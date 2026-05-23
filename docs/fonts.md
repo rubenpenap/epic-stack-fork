@@ -95,13 +95,13 @@ Follow the steps below to add Font Metric Overrides to your custom fonts.
    terminal:
 
    ```bash
-   npx fontpie ./local/font/location.woff2 -w font-weight -s normal/italic -n YourFont
+   pnpm dlx fontpie ./local/font/location.woff2 -w font-weight -s normal/italic -n YourFont
    ```
 
    #### Example
 
    ```sh
-   npx fontpie ./public/fonts/nunito-sans/nunito-sans-v12-latin_latin-ext-200.woff2 -w 200 -s normal -n NunitoSans
+   pnpm dlx fontpie ./public/fonts/nunito-sans/nunito-sans-v12-latin_latin-ext-200.woff2 -w 200 -s normal -n NunitoSans
    ```
 
    ```css
@@ -122,7 +122,7 @@ Follow the steps below to add Font Metric Overrides to your custom fonts.
    generate the overrides from a CSS file.
 
    ```sh
-   npx fontpie-from-css ./public/fonts/yourfont/yourfont.css
+   pnpm dlx fontpie-from-css ./public/fonts/yourfont/yourfont.css
    ```
 
    **_Note:_** _If you've been following the steps above, you might have to copy

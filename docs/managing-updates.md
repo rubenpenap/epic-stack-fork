@@ -48,7 +48,7 @@ anytime you'd like to see what updates could be made to your project.
 Check the [epic-stack field in the package.json file](../package.json) to see
 what the date and commit hash were when you created your project.
 
-## How to update NPM dependencies
+## How to update pnpm dependencies
 
 Another part of the Epic Stack is the dependencies of the project. These you
 will also have to keep up-to-date yourself, but there is a bit of an automated
@@ -63,12 +63,12 @@ demonstration of how to do this.
 
 ### See a list of packages that can be updated
 
-NPM packages follow [semantic versioning](https://semver.org). This command will
+Packages follow [semantic versioning](https://semver.org). This command will
 show you which packages can be updated and which major, minor, or patch versions
 are available.
 
 ```sh
-npx npm-check-updates
+pnpm dlx npm-check-updates
 ```
 
 Notice the colors:
@@ -83,12 +83,12 @@ Since green patch version updates are meant for backward-compatible bug fixes,
 it's ok to update them all at once.
 
 ```sh
-npx npm-check-updates -u --target patch
+pnpm dlx npm-check-updates -u --target patch
 ...
-npm i
+pnpm install
 ```
 
-> Note: `npx npm-check-updates -u -t patch` updates all patch versions,
+> Note: `pnpm dlx npm-check-updates -u -t patch` updates all patch versions,
 > including major version zero patch versions, which can break your code. If all
 > your patch updates are green, feel free to use this command instead to update
 > them all at once.
@@ -98,8 +98,8 @@ shouldn't break anything, but it's good practice to re-run your tests before
 committing these changes.
 
 ```sh
-npm run test -- run
-npm run test:e2e:run
+pnpm run test -- run
+pnpm run test:e2e:run
 ```
 
 If all tests pass, commit your changes.
@@ -123,8 +123,8 @@ To check for the new package's features, check its release notes on GitHub.
 > package is for your project when choosing which to update first.
 
 ```sh
-npx npm-check-updates -u --filter <package-with-cyan-minor-update>
-npm i
+pnpm dlx npm-check-updates -u --filter <package-with-cyan-minor-update>
+pnpm install
 ```
 
 Again, assuming package maintainers follow semantic versioning updating patch
@@ -132,8 +132,8 @@ versions shouldn't break anything, but it's good practice to re-run your tests
 to make sure.
 
 ```sh
-npm run test -- run
-npm run test:e2e:run
+pnpm run test -- run
+pnpm run test:e2e:run
 ```
 
 If all tests pass, commit your changes.
@@ -154,15 +154,15 @@ accordingly.
 > for your project when choosing which to update first.
 
 ```sh
-npx npm-check-updates -u -f <package-with-red-version-update>
-npm i
+pnpm dlx npm-check-updates -u -f <package-with-red-version-update>
+pnpm install
 ```
 
 Make sure you've made all relevant changes and that the tests pass.
 
 ```sh
-npm run test -- run
-npm run test:e2e:run
+pnpm run test -- run
+pnpm run test:e2e:run
 ```
 
 If all tests pass, commit your changes.

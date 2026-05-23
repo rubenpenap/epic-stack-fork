@@ -9,10 +9,10 @@ file at the root of the app.
 
 We'll defer to the `react-router-auto-routes` documentation for specifics, but
 an important thing for you to know as you get used to this convention is you can
-always run `npx react-router routes` from the root of the app and it will output
-the routes of your application in a JSX-like output that will reveal the routes
-that will be generated based on your current file structure. Here's an example
-of the Epic Stack routes at the time of this writing:
+always run `pnpm exec react-router routes` from the root of the app and it will
+output the routes of your application in a JSX-like output that will reveal the
+routes that will be generated based on your current file structure. Here's an
+example of the Epic Stack routes at the time of this writing:
 
 ```
 app/routes
